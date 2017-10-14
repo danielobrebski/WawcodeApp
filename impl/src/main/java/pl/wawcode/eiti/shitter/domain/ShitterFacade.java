@@ -34,9 +34,10 @@ public class ShitterFacade {
             .stream()
             .map(shitter -> ShitterOutDto
                 .builder()
-                .longitude(shitter.getLocation().getLongitude())
-                .latitude(shitter.getLocation().getLatitude())
-                .build()
+                    .id(shitter.getId())
+                    .longitude(shitter.getLocation().getLongitude())
+                    .latitude(shitter.getLocation().getLatitude())
+                    .build()
             )
             .collect(Collectors.toList());
     }
