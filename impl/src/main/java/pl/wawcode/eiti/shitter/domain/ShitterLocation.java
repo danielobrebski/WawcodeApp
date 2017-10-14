@@ -1,4 +1,4 @@
-package pl.wawcode.eiti.shitter;
+package pl.wawcode.eiti.shitter.domain;
 
 import javax.persistence.Embeddable;
 
