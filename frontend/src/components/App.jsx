@@ -13,12 +13,12 @@ class App extends React.Component {
   onChangedBounds(bounds) {
     let loc = {
       "downLeftLatitudeLongitude": {
-        "latitude": bounds['b']['b'],
-        "longitude": bounds['f']['b']
+        "latitude": bounds['f']['b'],
+        "longitude": bounds['b']['b']
       },
       "upRightLatitudeLongitude": {
-        "latitude": bounds['b']['f'],
-        "longitude": bounds['f']['f']
+        "latitude": bounds['f']['f'],
+        "longitude": bounds['b']['f']
       }
     };
 
