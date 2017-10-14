@@ -1,6 +1,7 @@
 package pl.wawcode.eiti.shitter.domain;
 
 import lombok.RequiredArgsConstructor;
+import pl.wawcode.eiti.shitter.dtos.ShitterInDto;
 
 @RequiredArgsConstructor
 public class ShitterFacade {
@@ -8,5 +9,14 @@ public class ShitterFacade {
 
     public void acceptShitter(Long id) {
         shitterService.acceptShitter(id);
+    }
+
+    public void addShitter(ShitterInDto shitter) {
+        shitterService.addShitter(
+            Shitter
+                .builder()
+                .location(new ShitterLocation(shitter.getLatitude(), shitter.getLongitude()))
+                .build()
+        );
     }
 }

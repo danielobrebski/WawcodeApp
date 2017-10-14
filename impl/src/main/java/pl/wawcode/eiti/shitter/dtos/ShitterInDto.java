@@ -5,5 +5,7 @@ import lombok.Data;
 
 @Data
 @Builder
-class ShitterInDto {
+public class ShitterInDto {
+    private Long latitude;
+    private Long longitude;
 }
