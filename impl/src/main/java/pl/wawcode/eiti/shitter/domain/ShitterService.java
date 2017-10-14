@@ -7,19 +7,19 @@ import pl.wawcode.eiti.shitter.dtos.ShitterInDto;
 class ShitterService {
     private final ShitterRepository shitterRepository;
 
+    void addShitter(Shitter shitter) {
+        shitterRepository.save(shitter);
+    }
+
     void acceptShitter(Long id) {
         Shitter shitter = shitterRepository.findOne(id);
         long reputationCounter = shitter.getReputationCounter();
-        shitter.setId(reputationCounter + 1);
-    }
-
-    void addShitter(Shitter shitter) {
-        shitterRepository.save(shitter);
+        shitter.setReputationCounter(reputationCounter + 1);
     }
 
     void rejectShitter(Long id) {
         Shitter shitter = shitterRepository.findOne(id);
         long reputationCounter = shitter.getReputationCounter();
-        shitter.setId(reputationCounter - 1);
+        shitter.setReputationCounter(reputationCounter - 1);
     }
 }
