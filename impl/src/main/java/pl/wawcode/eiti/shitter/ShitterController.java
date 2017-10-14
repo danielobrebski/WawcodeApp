@@ -1,13 +1,11 @@
 package pl.wawcode.eiti.shitter;
 
+import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.wawcode.eiti.shitter.dtos.ViewPortRange;
 import pl.wawcode.eiti.shitter.domain.ShitterFacade;
 import pl.wawcode.eiti.shitter.dtos.ShitterInDto;
@@ -18,13 +16,14 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping(path = "/")
 class ShitterController {
     private final ShitterFacade shitterFacade;
 
 
-    @GetMapping("/shitter/getShitters")
-    List<ShitterOutDto> getShittersFromLocation(@RequestParam(value="viewPortRange") ViewPortRange viewPortRange) {
-        return shitterFacade.getShitters(viewPortRange);
+    @RequestMapping(value = "/shitter/getShittersFromLocation", method = RequestMethod.POST)
+    ResponseEntity<List<ShitterOutDto>> getShittersFromLocation(@RequestBody ViewPortRange viewPortRange) {
+        return new ResponseEntity<>(shitterFacade.getShitters(viewPortRange), HttpStatus.OK);
     }
 
     @PostMapping(value = "/shitter/accept", consumes = MediaType.APPLICATION_JSON_VALUE)

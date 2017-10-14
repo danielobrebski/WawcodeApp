@@ -31,8 +31,6 @@ public class ShitterFacade {
     }
 
     public List<ShitterOutDto> getShitters(ViewPortRange viewPortRange) {
-        List<ShitterOutDto> shitterOutDtos = new ArrayList<>(0);
-
         return shitterService.getShitters(viewPortRange)
             .stream()
             .map(shitter -> ShitterOutDto
