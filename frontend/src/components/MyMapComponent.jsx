@@ -12,9 +12,11 @@ const MyMapComponent = withScriptjs(withGoogleMap(
           defaultZoom={8}
           defaultCenter= {this.props.userLocation}
           onBoundsChanged = {e => this.ref && this.props.onChangedBounds(this.ref.getBounds())}>
-          {this.props.data && this.props.data.map(({latitude,longitude}, key) =>
+          {this.props.data && this.props.data.map(({latitude,longitude,id,reputationCounter}, key) =>
             <Marker position={ {lat : latitude , lng : longitude} }
-                    key = {key} />)}
+                    key = {key}
+                    onClick= {() => this.props.onClickedMark(id)}
+                    label={reputationCounter + ""}/>)}
         </GoogleMap>
       )
     }
