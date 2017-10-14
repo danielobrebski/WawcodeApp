@@ -5,7 +5,6 @@ import pl.wawcode.eiti.shitter.dtos.ShitterInDto;
 import pl.wawcode.eiti.shitter.dtos.ViewPortRange;
 import pl.wawcode.eiti.shitter.dtos.ShitterOutDto;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 

@@ -7,5 +7,6 @@ import java.util.List;
 
 @Repository
 interface ShitterRepository extends CrudRepository<Shitter, Long> {
-    List<Shitter> findByLocationBetween(ShitterLocation downLeft, ShitterLocation upRight);
+    List<Shitter> findByLocationBetweenAndReputationCounterGreaterThan(ShitterLocation downLeft, ShitterLocation upRight,
+                                                                       Long minimumReputation);
 }

@@ -1,6 +1,5 @@
 package pl.wawcode.eiti.shitter;
 
-import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

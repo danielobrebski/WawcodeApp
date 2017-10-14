@@ -8,13 +8,15 @@ import java.util.List;
 @RequiredArgsConstructor
 class ShitterService {
 
+    private static final long MINIMUM_REPUTATION = 0l;
+
     private final ShitterRepository shitterRepository;
 
 
     List<Shitter> getShitters(ViewPortRange viewPortRange) {
-        List<Shitter> shitterList = shitterRepository.findByLocationBetween(
+        List<Shitter> shitterList = shitterRepository.findByLocationBetweenAndReputationCounterGreaterThan(
                 viewPortRange.getDownLeftLatitudeLongitude(),
-                viewPortRange.getUpRightLatitudeLongitude()
+                viewPortRange.getUpRightLatitudeLongitude(), MINIMUM_REPUTATION
         );
         return shitterList;
     }
