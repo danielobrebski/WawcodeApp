@@ -1,10 +1,8 @@
 package pl.wawcode.eiti.shitter.domain;
 
-import javafx.util.Pair;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.Embeddable;
 
 @Data
@@ -14,11 +12,6 @@ import javax.persistence.Embeddable;
 public class ShitterLocation implements Comparable {
     Double latitude;
     Double longitude;
-
-    ShitterLocation(Pair<Double, Double> pair) {
-        this.latitude = pair.getKey();
-        this.longitude = pair.getValue();
-    }
 
     @Override
     public int compareTo(Object o) {

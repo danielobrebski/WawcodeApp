@@ -1,6 +1,5 @@
 package pl.wawcode.eiti.shitter.domain;
 
-import javafx.util.Pair;
 import lombok.RequiredArgsConstructor;
 import pl.wawcode.eiti.shitter.dtos.ShitterInDto;
 import pl.wawcode.eiti.shitter.dtos.ViewPortRange;
@@ -20,12 +19,11 @@ public class ShitterFacade {
 
     public void addShitter(ShitterInDto shitter) {
         shitterService.addShitter(
-                Shitter
-                        .builder()
-                        .location(new ShitterLocation(shitter.getLatitude(), shitter.getLongitude()))
-                        .build()
+            Shitter
+                .builder()
+                .location(new ShitterLocation(shitter.getLatitude(), shitter.getLongitude()))
+                .build()
         );
-
     }
 
     public void rejectShitter(Long id) {
@@ -36,13 +34,13 @@ public class ShitterFacade {
         List<ShitterOutDto> shitterOutDtos = new ArrayList<>(0);
 
         return shitterService.getShitters(viewPortRange)
-                .stream()
-                .map(shitter -> ShitterOutDto
-                    .builder()
-                        .longitude(shitter.getLocation().getLongitude())
-                        .latitude(shitter.getLocation().getLatitude())
-                        .build())
-                .collect(Collectors.toList());
-
+            .stream()
+            .map(shitter -> ShitterOutDto
+                .builder()
+                .longitude(shitter.getLocation().getLongitude())
+                .latitude(shitter.getLocation().getLatitude())
+                .build()
+            )
+            .collect(Collectors.toList());
     }
 }

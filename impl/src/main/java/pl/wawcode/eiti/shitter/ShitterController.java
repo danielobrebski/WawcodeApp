@@ -14,6 +14,8 @@ import pl.wawcode.eiti.shitter.dtos.ShitterInDto;
 import pl.wawcode.eiti.shitter.dtos.SubmissionShitterDto;
 import pl.wawcode.eiti.shitter.dtos.ShitterOutDto;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 class ShitterController {
@@ -21,9 +23,8 @@ class ShitterController {
 
 
     @GetMapping("/shitter/getShitters")
-    ShitterOutDto getShittersFromLocation(@RequestParam(value="viewPortRange") ViewPortRange viewPortRange) {
-
-        return null;
+    List<ShitterOutDto> getShittersFromLocation(@RequestParam(value="viewPortRange") ViewPortRange viewPortRange) {
+        return shitterFacade.getShitters(viewPortRange);
     }
 
     @PostMapping(value = "/shitter/accept", consumes = MediaType.APPLICATION_JSON_VALUE)

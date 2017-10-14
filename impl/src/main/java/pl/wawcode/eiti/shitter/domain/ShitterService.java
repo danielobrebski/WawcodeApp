@@ -12,9 +12,10 @@ class ShitterService {
 
 
     List<Shitter> getShitters(ViewPortRange viewPortRange) {
-        List<Shitter> shitterList = shitterRepository.findByLocationBetween(viewPortRange.getDownLeftLatitudeLongitude(),
-                viewPortRange.getUpRightLatitudeLongitude());
-
+        List<Shitter> shitterList = shitterRepository.findByLocationBetween(
+                viewPortRange.getDownLeftLatitudeLongitude(),
+                viewPortRange.getUpRightLatitudeLongitude()
+        );
         return shitterList;
     }
 
