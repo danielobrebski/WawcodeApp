@@ -37,6 +37,7 @@ public class ShitterFacade {
                     .id(shitter.getId())
                     .longitude(shitter.getLocation().getLongitude())
                     .latitude(shitter.getLocation().getLatitude())
+                    .reputationCounter(shitter.getReputationCounter())
                     .build()
             )
             .collect(Collectors.toList());
