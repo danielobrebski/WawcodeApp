@@ -2,7 +2,6 @@ package pl.wawcode.eiti.shitter.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
 import pl.wawcode.eiti.shitter.domain.ShitterLocation;
 
 import java.io.Serializable;

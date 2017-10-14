@@ -14,10 +14,9 @@ class ShitterService {
 
 
     List<Shitter> getShitters(ViewPortRange viewPortRange) {
-        List<Shitter> shitterList = shitterRepository.findByLocationBetweenAndReputationCounterGreaterThan(
+        List<Shitter> shitterList = shitterRepository.findByLocationBetween(
                 viewPortRange.getDownLeftLatitudeLongitude(),
-                viewPortRange.getUpRightLatitudeLongitude(), MINIMUM_REPUTATION
-        );
+                viewPortRange.getUpRightLatitudeLongitude());
         return shitterList;
     }
 
