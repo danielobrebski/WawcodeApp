@@ -11,8 +11,10 @@ import javax.persistence.*;
 class Shitter {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
+    private Long id;
 
     @Embedded
-    ShitterLocation location;
+    private ShitterLocation location;
+
+    private long reputationCounter;
 }
