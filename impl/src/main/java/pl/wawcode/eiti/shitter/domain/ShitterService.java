@@ -28,11 +28,13 @@ class ShitterService {
         Shitter shitter = shitterRepository.findOne(id);
         long reputationCounter = shitter.getReputationCounter();
         shitter.setReputationCounter(reputationCounter + 1);
+        shitterRepository.save(shitter);
     }
 
     void rejectShitter(Long id) {
         Shitter shitter = shitterRepository.findOne(id);
         long reputationCounter = shitter.getReputationCounter();
         shitter.setReputationCounter(reputationCounter - 1);
+        shitterRepository.save(shitter);
     }
 }
