@@ -32,7 +32,36 @@
             initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
             map.setCenter(initialLocation);
         });
+
+        map.zoom = 15;
+
+        google.maps.event.addListener(map, 'bounds_changed', function() {
+            console.log("Getting bounds...");
+            var bounds = map.getBounds();
+            // api call
+            var shitters = [
+                    {
+                        lat : 52.259340,
+                        lng : 21.036292,
+                    },
+                    {
+                        lat : 52.269454,
+                        lng : 20.967496,
+                    }
+                ];
+
+            shitters.forEach(function (shitter) {
+                var marker = new google.maps.Marker({
+                    position: shitter,
+                    map: map,
+                    title: 'Hello World!'
+                });
+                marker.setMap(map);
+            })
+        })
+
     }
+
 
 
 
