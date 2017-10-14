@@ -1,0 +1,16 @@
+plugins {
+    id "com.moowork.node" version "1.1.1"
+}
+
+task build {
+    dependsOn npm_install
+    dependsOn npm_run_build
+}
+
+task test {
+    dependsOn npm_test
+}
+
+run {
+    dependsOn npm_start
+}
