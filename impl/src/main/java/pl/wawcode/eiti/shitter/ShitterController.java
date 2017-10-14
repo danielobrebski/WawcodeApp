@@ -19,8 +19,8 @@ import java.util.List;
 class ShitterController {
     private final ShitterFacade shitterFacade;
 
-
-    @RequestMapping(value = "/shitter/getShittersFromLocation", method = RequestMethod.POST)
+    @CrossOrigin(origins = "http://localhost:8081")
+    @PostMapping(value = "/shitter/getShittersFromLocation", consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<List<ShitterOutDto>> getShittersFromLocation(@RequestBody ViewPortRange viewPortRange) {
         return new ResponseEntity<>(shitterFacade.getShitters(viewPortRange), HttpStatus.OK);
     }
