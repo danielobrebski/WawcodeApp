@@ -16,10 +16,10 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "/")
+@CrossOrigin(origins = "http://localhost:8080")
 class ShitterController {
     private final ShitterFacade shitterFacade;
 
-    @CrossOrigin(origins = "http://localhost:8081")
     @PostMapping(value = "/shitter/getShittersFromLocation", consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<List<ShitterOutDto>> getShittersFromLocation(@RequestBody ViewPortRange viewPortRange) {
         return new ResponseEntity<>(shitterFacade.getShitters(viewPortRange), HttpStatus.OK);
@@ -37,7 +37,7 @@ class ShitterController {
         return ResponseEntity.ok(null);
     }
 
-    @PostMapping(path = "/shitter/add")
+    @PostMapping(path = "/shitter/add", consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<Void> addShitter(@RequestBody ShitterInDto newShitter) {
         shitterFacade.addShitter(newShitter);
         return ResponseEntity.ok(null);
