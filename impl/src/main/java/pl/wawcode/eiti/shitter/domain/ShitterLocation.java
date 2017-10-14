@@ -10,8 +10,8 @@ import javax.persistence.Embeddable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ShitterLocation implements Comparable {
-    Double latitude;
-    Double longitude;
+    private Double latitude;
+    private Double longitude;
 
     @Override
     public int compareTo(Object o) {

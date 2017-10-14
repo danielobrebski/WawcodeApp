@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 class ShitterConfiguration {
 
     @Bean
-    public ShitterFacade shitterFacade(ShitterRepository shitterRepository){
+    public static ShitterFacade shitterFacade(ShitterRepository shitterRepository){
         ShitterService shitterService = new ShitterService(shitterRepository);
         return new ShitterFacade(shitterService);
     }
