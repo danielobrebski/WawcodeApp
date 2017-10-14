@@ -7,6 +7,7 @@
   </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
     <output url="file://$MODULE_DIR$/../../backend/out/production/classes" />
+    <output-test url="file://$MODULE_DIR$/../../out/test/backend_main" />
     <exclude-output />
     <content url="file://$MODULE_DIR$/../../backend/src/main">
       <sourceFolder url="file://$MODULE_DIR$/../../backend/src/main/java" isTestSource="false" />
