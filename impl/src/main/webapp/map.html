@@ -27,7 +27,15 @@
             center: {lat: -34.397, lng: 150.644},
             zoom: 8
         });
+
+        navigator.geolocation.getCurrentPosition(function (position) {
+            initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            map.setCenter(initialLocation);
+        });
     }
+
+
+
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDPOpGNTu51Icel0d9Ka_OAj0vC6n1uzLI&callback=initMap"
         async defer></script>
