@@ -1,7 +1,14 @@
 package pl.wawcode.eiti.shitter.domain;
 
+import javafx.util.Pair;
 import lombok.RequiredArgsConstructor;
 import pl.wawcode.eiti.shitter.dtos.ShitterInDto;
+import pl.wawcode.eiti.shitter.dtos.ViewPortRange;
+import pl.wawcode.eiti.shitter.dtos.ShitterOutDto;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 public class ShitterFacade {
@@ -23,5 +30,19 @@ public class ShitterFacade {
 
     public void rejectShitter(Long id) {
         shitterService.rejectShitter(id);
+    }
+
+    public List<ShitterOutDto> getShitters(ViewPortRange viewPortRange) {
+        List<ShitterOutDto> shitterOutDtos = new ArrayList<>(0);
+
+        return shitterService.getShitters(viewPortRange)
+                .stream()
+                .map(shitter -> ShitterOutDto
+                    .builder()
+                        .longitude(shitter.getLocation().getLongitude())
+                        .latitude(shitter.getLocation().getLatitude())
+                        .build())
+                .collect(Collectors.toList());
+
     }
 }
