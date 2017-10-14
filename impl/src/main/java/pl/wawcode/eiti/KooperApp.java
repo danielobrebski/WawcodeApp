@@ -10,5 +10,3 @@ public class KooperApp {
 		SpringApplication.run(KooperApp.class, args);
 	}
 }
-
-// test commit
