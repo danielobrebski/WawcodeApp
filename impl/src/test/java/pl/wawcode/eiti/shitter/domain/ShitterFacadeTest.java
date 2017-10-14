@@ -24,6 +24,6 @@ public class ShitterFacadeTest {
     public void getShitters() throws Exception {
         facade.addShitter(ShitterInDto.builder().latitude(66d).longitude(66d).build());
         List<ShitterOutDto> shitterList = facade.getShitters(new ViewPortRange(new ShitterLocation(0d, 0d), new ShitterLocation(100d, 100d)));
-        assertTrue(shitterList.size() == 1);
+        assertTrue(shitterList.size() == 5);
     }
 }

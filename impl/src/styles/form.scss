@@ -1,0 +1,66 @@
+@import "./colors.scss";
+
+.form {
+  color: $text-primary;
+}
+
+.form-label {
+  display: block;
+}
+
+.form-submit {
+  text-align: right;
+
+  input, button {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    padding: 0;
+    color: $text-primary;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+}
+
+.form-field input {
+  color: $text-primary;
+  width: 100%;
+  font-family: serif;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  border: none;
+  background: none;
+  border-bottom: 3px solid transparent;
+}
+
+.form-field input:focus {
+  outline: none;
+  border-bottom: 3px solid $text-primary;
+}
+
+.form-field input::placeholder {
+  color: $text-primary;
+  font-style: italic;
+}
+
+.form-field input::-webkit-input-placeholder {
+  color: $text-primary;
+  font-style: italic;
+}
+
+.form-field input::-moz-placeholder {
+  color: $text-primary;
+  font-style: italic;
+}
+
+.form-field input:-ms-input-placeholder {
+  color: $text-primary;
+  font-style: italic;
+}
+
+.form-field input:-moz-placeholder {
+  color: $text-primary;
+  font-style: italic;
+}

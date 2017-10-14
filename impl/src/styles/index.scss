@@ -1,0 +1,79 @@
+@import './colors.scss';
+@import './navbar.scss';
+@import './form.scss';
+@import './login.scss';
+@import './linklist.scss';
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+
+  overflow-x: hidden;
+}
+
+#root,
+div[data-reactroot],
+.page-wrapper {
+  height: 100%;
+}
+
+body {
+  color: $text-primary;
+
+  padding: 0;
+  margin: 0;
+
+  background-color: $theme-primary;
+  background-image: -webkit-gradient(linear, 0% 0%, 100% 100%, color-stop(0, $theme-primary),color-stop(1, $theme-secondary));
+  background-image: -webkit-repeating-linear-gradient(top left,$theme-primary 0%,$theme-secondary 100%);
+  background-image: repeating-linear-gradient(to bottom right,$theme-primary 0%,$theme-secondary 100%);
+  background-image: -ms-repeating-linear-gradient(top left,$theme-primary 0%,$theme-secondary 100%);
+}
+
+.page-wrapper {
+  box-sizing: border-box;
+  position: relative;
+  padding-top: 70px;
+  left: 0;
+
+  transition: left .25s ease-in-out;
+  -webkit-transition: left .25s ease-in-out;
+  -moz-transition: left .25s ease-in-out;
+  -o-transition: left .25s ease-in-out;
+}
+
+.page-wrapper.pushed {
+  left: 150px;
+}
+
+.page-item {
+  display: block;
+  box-sizing: border-box;
+  width: 500px;
+  padding: 30px;
+  margin: 0 auto;
+  border: 3px solid $theme-white;
+
+  @media only screen and (max-width: 540px) {
+    width: auto;
+    margin: 0 20px;
+  }
+}
+
+.page-info {
+  font-size: 0.7rem;
+  margin: 0;
+  text-transform: uppercase;
+  font-family: sans-serif;
+}
+
+::-moz-selection {
+  background-color: darken($theme-primary, 20%);
+  color: $text-primary;
+}
+
+::selection {
+  background-color: darken($theme-primary, 20%);
+  color: $text-primary;
+}
