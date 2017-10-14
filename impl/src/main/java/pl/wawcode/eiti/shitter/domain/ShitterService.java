@@ -16,4 +16,10 @@ class ShitterService {
     void addShitter(Shitter shitter) {
         shitterRepository.save(shitter);
     }
+
+    void rejectShitter(Long id) {
+        Shitter shitter = shitterRepository.findOne(id);
+        long reputationCounter = shitter.getReputationCounter();
+        shitter.setId(reputationCounter - 1);
+    }
 }

@@ -13,10 +13,15 @@ public class ShitterFacade {
 
     public void addShitter(ShitterInDto shitter) {
         shitterService.addShitter(
-            Shitter
-                .builder()
-                .location(new ShitterLocation(shitter.getLatitude(), shitter.getLongitude()))
-                .build()
+                Shitter
+                        .builder()
+                        .location(new ShitterLocation(shitter.getLatitude(), shitter.getLongitude()))
+                        .build()
         );
+
+    }
+
+    public void rejectShitter(Long id) {
+        shitterService.rejectShitter(id);
     }
 }
