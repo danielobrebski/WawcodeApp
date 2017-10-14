@@ -14,6 +14,6 @@ class ShitterService {
     }
 
     void addShitter(Shitter shitter) {
-
+        shitterRepository.save(shitter);
     }
 }
