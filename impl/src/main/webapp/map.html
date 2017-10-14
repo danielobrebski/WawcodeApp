@@ -20,6 +20,7 @@
 </head>
 <body>
 <div id="map"></div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
 <script>
     var map;
     function initMap() {
@@ -36,28 +37,37 @@
         map.zoom = 15;
 
         google.maps.event.addListener(map, 'bounds_changed', function() {
-            console.log("Getting bounds...");
             var bounds = map.getBounds();
-            // api call
-            var shitters = [
-                    {
-                        lat : 52.259340,
-                        lng : 21.036292,
-                    },
-                    {
-                        lat : 52.269454,
-                        lng : 20.967496,
-                    }
-                ];
 
-            shitters.forEach(function (shitter) {
-                var marker = new google.maps.Marker({
-                    position: shitter,
-                    map: map,
-                    title: 'Hello World!'
-                });
-                marker.setMap(map);
-            })
+            var url = "http://localhost:58081/shitter/getShittersFromLocation";
+            var body = {
+                "downLeftLatitudeLongitude": {
+                    "latitude": bounds['b']['b'],
+                    "longitude": bounds['f']['b']
+                },
+                "upRightLatitudeLongitude": {
+                    "latitude": bounds['b']['f'],
+                    "longitude": bounds['f']['f']
+                }
+            };
+
+            $.ajax(url, {
+                data: JSON.stringify(body),
+                contentType: 'application/json',
+                type: 'POST',
+                success: function (data) {
+                    console.log(data.length);
+                    data.forEach(function (shitter) {
+                        var marker = new google.maps.Marker({
+                            position: {lat:shitter["latitude"], lng:shitter["longitude"]},
+                            map: map,
+                            title: 'Hello World!'
+                        });
+                        marker.setMap(map);
+                    })
+                }
+            });
+
         })
 
     }
