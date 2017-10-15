@@ -1,5 +1,6 @@
 import React from 'react';
 import MyMapComponent from './MyMapComponent';
+import MarkShitComponent from './MarkShitComponent';
 import Localization from './Localization';
 
 class App extends React.Component {
@@ -43,6 +44,19 @@ class App extends React.Component {
     });
   }
 
+  showButton() {
+    if(!this.state.selectedMark.isSelected)
+      return false;
+
+    const clicked = JSON.parse(localStorage.getItem("clicked"));
+
+    if(!clicked)
+      return true;
+
+    const clickedMark = clicked[this.state.selectedMark.id];
+    return this.state.selectedMark.isSelected && !clickedMark || (clickedMark && (clicked[this.state.selectedMark.id] + 10000 < Date.now()));
+  }
+
   render() {
     return (
       <div>
@@ -54,17 +68,18 @@ class App extends React.Component {
             data={this.state.data}
             googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyDPOpGNTu51Icel0d9Ka_OAj0vC6n1uzLI"
             loadingElement={<div style={{height: `100%`}}/>}
-            containerElement={<div style={{height: `400px`}}/>}
+            containerElement={<div style={{height: `500px`}}/>}
             mapElement={<div style={{height: `100%`}}/>}
           />}
         </Localization>
-        {this.state.selectedMark.isSelected ? <MarkShitComponent
+        {this.showButton() ? <MarkShitComponent
           mark = {this.state.selectedMark}
           rankingChanged= {(id,rank) => {
           this.setState({
             data: this.state.data.map(d => {
               return d.id === id ? {latitude: d.latitude, longitude: d.longitude, id: d.id, reputationCounter: d.reputationCounter + rank}: d
-            })
+            }),
+            selectedMark: {isSelected: false, id: null}
           });
         }}/> : null}
       </div>

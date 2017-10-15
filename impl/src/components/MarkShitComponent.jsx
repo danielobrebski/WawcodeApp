@@ -17,7 +17,13 @@ class MarkShitComponent extends React.Component {
       body: JSON.stringify({shitterId: this.props.mark.id})
     })
       .then(res => {})
-      .then(json => {localStorage.setItem(clicked,)});
+      .then(json => {
+        let clickedElement = JSON.parse(localStorage.getItem("clicked"));
+        if(!clickedElement)
+          clickedElement = {};
+        clickedElement[this.props.mark.id] = Date.now();
+        localStorage.setItem("clicked",JSON.stringify(clickedElement));
+      });
 
     this.props.rankingChanged(this.props.mark.id, like ? 1 : -1)
   }
