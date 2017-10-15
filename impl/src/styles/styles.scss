@@ -1,11 +1,61 @@
-.rateButton {
-  width: 100%;
-  position: fixed;
-  bottom: 1rem;
-  text-align: center;
+@import "./colors.scss";
 
-  .btn {
-    margin-right: 0.5rem;
+.content {
+  padding-top: 2rem;
+
+  .header{
+
+    height: 2rem;
+
+    .headerInput {
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+    }
   }
 
+  .addButton {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+  }
+
+  .rateButton {
+    width: 100%;
+    position: fixed;
+    bottom: 1rem;
+    text-align: center;
+
+    .btn {
+      margin-right: 0.5rem;
+    }
+
+  }
 }
+
+.footer {
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+  width: calc(100% - 5rem);
+
+  .addElem{
+    display: inline-block;
+    text-align: center;
+
+    &.addElemForm {
+      color: black;
+      font-weight: bold;
+      width: calc(100% - 6rem);
+    }
+
+    .buttonBack {
+      margin-bottom: 1rem;
+    }
+
+    .elem {
+      display: inline-block;
+    }
+  }
+}
+

@@ -48,9 +48,8 @@ class App extends React.Component {
   }
 
   onClickPage(page) {
-    this.setState({
-      page: page
-    });
+    console.log(page);
+    this.setState({page: page});
   }
 
   showButton() {
@@ -67,19 +66,22 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.state.page);
     if (this.state.page === "MAP") {
       return (
-        <div>
+        <div className="content">
+          <div className="header">
+            <span className="headerInput">KuperApp</span> <a onClick={() => this.onClickPage("ADD")} className="btn btn-xs btn-success addButton">
+            <span className="glyphicon glyphicon-plus-sign"/> Dodaj kibel</a>
+          </div>
           <Localization>
             {(localization) => <MyMapComponent
               onChangedBounds={this.onChangedBounds}
               onClickedMark={this.onClickedMark}
               userLocation={localization}
               data={this.state.data}
-              googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyDPOpGNTu51Icel0d9Ka_OAj0vC6n1uzLI"
+              googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
               loadingElement={<div style={{height: `100%`}}/>}
-              containerElement={<div style={{height: `500px`}}/>}
+              containerElement={<div style={{height: `calc(100% - 2rem`}}/>}
               mapElement={<div style={{height: `100%`}}/>}
             />}
           </Localization>
@@ -98,16 +100,12 @@ class App extends React.Component {
                 selectedMark: {isSelected: false, id: null}
               });
             }}/> : null}
-          <a onClick={() => this.onClickPage("ADD")} className="btn btn-lg btn-success"><span
-            className="glyphicon glyphicon-thumbs-up"/> Dodaj Sracz</a>
         </div>
       )
     } else {
       return (
-        <div>
-          <AddShitter onClickPage={this.onClickPage}>s
-          </AddShitter>
-        </div>
+        <AddShitter onClickPage={this.onClickPage}>
+        </AddShitter>
       )
     }
   }

@@ -31,8 +31,8 @@ class MarkShitComponent extends React.Component {
   render() {
       return (
         <div className="rateButton">
-          <a href="#" onClick={() => this.onClick(true)} className="btn btn-lg btn-success"><span className="glyphicon glyphicon-thumbs-up"/> DO DUPY</a>
-          <a href="#" onClick={() => this.onClick(false)} className="btn btn-lg btn-danger"><span className="glyphicon glyphicon-thumbs-down"/> PO CHUJU</a>
+          <a href="#" onClick={() => this.onClick(true)} className="btn btn-lg btn-success"><span className="glyphicon glyphicon-thumbs-up"/> + 1</a>
+          <a href="#" onClick={() => this.onClick(false)} className="btn btn-lg btn-danger"><span className="glyphicon glyphicon-thumbs-down"/> - 1</a>
         </div>
       )
     }

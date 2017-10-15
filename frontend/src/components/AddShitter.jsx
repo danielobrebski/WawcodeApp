@@ -40,21 +40,26 @@ class AddShitter extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="content">
+        <div className="header">
+          <span className="headerInput">KuperApp</span>
+        </div>
         <Localization>
           {(localization) => <AddShitterMap
             onShitterClicked={this.onShitterClicked}
             data={this.state.data}
             userLocation={localization}
-            googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyDPOpGNTu51Icel0d9Ka_OAj0vC6n1uzLI"
+            googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
             loadingElement={<div style={{height: `100%`}}/>}
-            containerElement={<div style={{height: `400px`}}/>}
+            containerElement={<div style={{height: `calc(100% - 2rem`}}/>}
             mapElement={<div style={{height: `100%`}}/>}
           />}
         </Localization>
-        <a onClick={() => this.props.onClickPage("MAP")} className="btn btn-lg btn-success"><span
-          className="glyphicon glyphicon-thumbs-up"/> Wroc</a>
+        <div className="footer">
+        <a onClick={() => this.props.onClickPage("MAP")} className="btn btn-lg btn-success buttonBack addElem"><span
+          className="glyphicon glyphicon-chevron-left"/></a>
         {this.state.data ? <AddShitterForm onSubmit={this.onSubmit}/> : null}
+        </div>
       </div>
     )
   }

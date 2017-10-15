@@ -22,9 +22,5 @@ body {
   margin: 0;
 
   background-color: $theme-primary;
-  background-image: -webkit-gradient(linear, 0% 0%, 100% 100%, color-stop(0, $theme-primary),color-stop(1, $theme-secondary));
-  background-image: -webkit-repeating-linear-gradient(top left,$theme-primary 0%,$theme-secondary 100%);
-  background-image: repeating-linear-gradient(to bottom right,$theme-primary 0%,$theme-secondary 100%);
-  background-image: -ms-repeating-linear-gradient(top left,$theme-primary 0%,$theme-secondary 100%);
 }
 
