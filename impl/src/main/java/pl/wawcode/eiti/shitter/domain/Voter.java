@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -23,4 +24,6 @@ class Voter {
     private Long id;
 
     private String remoteAddr;
+
+    private LocalDateTime timestamp;
 }

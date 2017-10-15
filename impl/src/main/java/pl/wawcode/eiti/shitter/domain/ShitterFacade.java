@@ -6,6 +6,8 @@ import pl.wawcode.eiti.shitter.dtos.ShitterInDto;
 import pl.wawcode.eiti.shitter.dtos.ViewPortRange;
 import pl.wawcode.eiti.shitter.dtos.ShitterOutDto;
 
+import javax.transaction.RollbackException;
+import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,6 +16,7 @@ import java.util.stream.Collectors;
 public class ShitterFacade {
     private final ShitterService shitterService;
 
+    @Transactional(rollbackOn = RuntimeException.class)
     public void addShitter(ShitterInDto shitter, MultipartFile file) {
         try {
             shitterService.addShitter(
@@ -31,16 +34,19 @@ public class ShitterFacade {
         }
     }
 
+    @Transactional(rollbackOn = RuntimeException.class)
     public Void acceptShitter(Long id, String remoteAddr) {
         shitterService.changeReputation(id, remoteAddr, true);
         return null;
     }
 
+    @Transactional(rollbackOn = RuntimeException.class)
     public Void rejectShitter(Long id, String remoteAddr) {
         shitterService.changeReputation(id, remoteAddr, false);
         return null;
     }
 
+    @Transactional(rollbackOn = RuntimeException.class)
     public List<ShitterOutDto> getShitters(ViewPortRange viewPortRange) {
         return shitterService.getShitters(viewPortRange)
             .stream()

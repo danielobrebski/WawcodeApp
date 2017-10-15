@@ -31,6 +31,6 @@ class Shitter {
 
     private String description;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private Set<Voter> voters = new HashSet<>();
 }

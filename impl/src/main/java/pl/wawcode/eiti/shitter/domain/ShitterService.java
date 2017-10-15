@@ -4,12 +4,19 @@ import lombok.RequiredArgsConstructor;
 import pl.wawcode.eiti.shitter.dtos.ViewPortRange;
 import pl.wawcode.eiti.shitter.exceptions.AlreadyVotedException;
 
+import java.awt.*;
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 
 @RequiredArgsConstructor
 class ShitterService {
 
     private static final long MINIMUM_REPUTATION = 0l;
+    private static final long VOTING_INTERVAL = 5000l;
+
 
     private final ShitterRepository shitterRepository;
 
@@ -29,14 +36,31 @@ class ShitterService {
         Shitter shitter = shitterRepository.findOne(id);
         validateVoter(remoteAddr, shitter);
         changeReputation(shitter, positive);
-        shitter.getVoters().add(Voter.builder().remoteAddr(remoteAddr).build());
         shitterRepository.save(shitter);
+        shitter.getVoters().add(Voter.builder()
+                .remoteAddr(remoteAddr)
+                .timestamp(LocalDateTime.now())
+                .build());
     }
 
     private void validateVoter(String remoteAddr, Shitter shitter) {
-        if(shitter.getVoters().contains(remoteAddr)) {
-            throw new AlreadyVotedException();
+        if(shitter.getVoters().size() != 0) {
+            Timestamp lastVotingDate = Timestamp.valueOf(findLastVotingDate(remoteAddr, shitter));
+            Timestamp now = Timestamp.valueOf(LocalDateTime.now());
+
+            if (now.getTime() - lastVotingDate.getTime() < 5000) {
+                throw new AlreadyVotedException();
+            }
         }
+    }
+
+    private LocalDateTime findLastVotingDate(String remoteAddr, Shitter shitter) {
+        return shitter.getVoters().stream()
+                .filter(voter -> voter.getRemoteAddr().equals(remoteAddr))
+                .sorted(Comparator.comparing(Voter::getTimestamp).reversed())
+                .findFirst()
+                .orElseThrow(AlreadyVotedException::new)
+                .getTimestamp();
     }
 
     private void changeReputation(Shitter shitter, boolean positive) {
