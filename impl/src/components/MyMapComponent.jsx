@@ -13,6 +13,10 @@ const MyMapComponent = withScriptjs(withGoogleMap(
         this.lastApiCall = 0;
         this.timeout = null;
         this.directions = null;
+        this.icon =  {
+          url: "../../src/Toilet-Paper.ico", // url
+          scaledSize: new google.maps.Size(35, 35), // scaled size
+        };
     }
 
     trottledOnChangedBound() {
@@ -38,7 +42,7 @@ const MyMapComponent = withScriptjs(withGoogleMap(
       }, (result, status) => {
         if (status === google.maps.DirectionsStatus.OK) {
           this.setState({
-            directions: result,
+            directions: result
           });
         } else {
           console.error(`error fetching directions ${result}`);
@@ -59,8 +63,17 @@ const MyMapComponent = withScriptjs(withGoogleMap(
             <Marker position={ {lat : latitude , lng : longitude} }
                     key = {key}
                     onClick= {() => this.markerClicked(id,latitude,longitude)}
-                    label={reputationCounter + ""}/>)}
-          {this.state && this.state.directions && <DirectionsRenderer directions={this.state.directions} />}
+                    label={reputationCounter + ""}
+                    icon={this.icon}/>)}
+          {this.state && this.state.directions &&
+            <Marker position= {this.state.directions.routes[ 0 ].legs[ 0 ].start_location }
+                    icon={{url: "../../src/start.ico",
+                            scaledSize: this.icon.scaledSize}}/>}
+          {this.state && this.state.directions &&
+          <Marker position= {this.state.directions.routes[ 0 ].legs[ 0 ].end_location }
+                  icon={{url: "../../src/end.ico",
+                    scaledSize: this.icon.scaledSize}}/>}/>}
+          {this.state && this.state.directions && <DirectionsRenderer options={{suppressMarkers: true}} directions={this.state.directions}/>}
         </GoogleMap>
       )
     }
