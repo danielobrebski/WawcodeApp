@@ -19,12 +19,13 @@ class Shitter {
     @Embedded
     private ShitterLocation location;
 
-    @Column(columnDefinition = "default 5")
+    @ColumnDefault("5")
     private long reputationCounter;
 
     private LocalDateTime openingHour;
     private LocalDateTime closingHour;
 
     private byte[] image;
+
     private String description;
 }

@@ -5,6 +5,7 @@ import pl.wawcode.eiti.shitter.dtos.ShitterInDto;
 import pl.wawcode.eiti.shitter.dtos.ViewPortRange;
 import pl.wawcode.eiti.shitter.dtos.ShitterOutDto;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,16 +18,20 @@ public class ShitterFacade {
     }
 
     public void addShitter(ShitterInDto shitter) {
-        shitterService.addShitter(
-            Shitter
-                .builder()
-                    .location(new ShitterLocation(shitter.getLatitude(), shitter.getLongitude()))
-                    .openingHour(shitter.getOpeningHour())
-                    .closingHour(shitter.getClosingHour())
-                    .description(shitter.getDescription())
-                    .image(shitter.getImage())
-                .build()
-        );
+        try {
+            shitterService.addShitter(
+                Shitter
+                    .builder()
+                        .location(new ShitterLocation(shitter.getLatitude(), shitter.getLongitude()))
+                        .openingHour(shitter.getOpeningHour())
+                        .closingHour(shitter.getClosingHour())
+                        .description(shitter.getDescription())
+                        .image(shitter.getImage() != null ? shitter.getImage().getBytes() : null)
+                    .build()
+            );
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void rejectShitter(Long id) {

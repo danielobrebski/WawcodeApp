@@ -2,9 +2,11 @@ package pl.wawcode.eiti.shitter.dtos;
 
 import lombok.Builder;
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 import pl.wawcode.eiti.shitter.domain.ShitterLocation;
 
 import javax.persistence.Embedded;
+import java.io.File;
 import java.time.LocalDateTime;
 
 @Data

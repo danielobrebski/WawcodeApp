@@ -2,6 +2,7 @@ package pl.wawcode.eiti.shitter.dtos;
 
 import lombok.Builder;
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 
@@ -12,6 +13,6 @@ public class ShitterInDto {
     private Double longitude;
     private LocalDateTime openingHour;
     private LocalDateTime closingHour;
-    private byte[] image;
+    private MultipartFile image;
     private String description;
 }
