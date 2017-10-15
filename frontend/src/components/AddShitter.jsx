@@ -21,20 +21,23 @@ class AddShitter extends React.Component {
     })
   }
 
-  onSubmit(description, openingHour, closingHour) {
+  onSubmit(description1, openingHour1, closingHour1) {
+    const lat = this.state.data.latitude;
+    const long = this.state.data.longitude;
+    const mybody = {
+      latitude: lat,
+      longitude: long,
+      description: description1,
+      openingHour: openingHour1,
+      closingHour: closingHour1
+    };
     fetch("http://localhost:58081/shitter/add", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({latitude: this.state.data.latitude,
-        longitude: this.state.data.longitude,
-        description : description,
-        openingHour : openingHour,
-        closingHour : closingHour,
-        })
+      body: JSON.stringify(mybody)
     });
-    console.log(description);
     this.props.onClickPage("MAP");
   }
 

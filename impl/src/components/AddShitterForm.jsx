@@ -44,11 +44,12 @@ class AddShitterForm extends React.Component {
         </div>
         <div className="to">
           <label>Do :</label>
-          <input name="ClosingHour" type="text" value={this.state.inputValue} onChange={this.handleClosingHour}
+          <input name="ClosingHour" type="text" value={this.state.closingHour} onChange={this.handleClosingHour}
                  required/>
         </div>
         <div className="login-button-wrapper">
-          <a className="btn btn-sm btn-default btn-success circle" onClick={this.props.onSubmit} ><span className="glyphicon glyphicon-ok"></span></a>
+          <a className="btn btn-sm btn-default btn-success circle"
+             onClick={() => this.props.onSubmit(this.state.description,this.state.openingHour, this.state.closingHour)} ><span className="glyphicon glyphicon-ok"></span></a>
         </div>
       </div>
     );
