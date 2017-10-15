@@ -1,6 +1,7 @@
 package pl.wawcode.eiti.shitter.domain;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 import pl.wawcode.eiti.shitter.dtos.ShitterInDto;
 import pl.wawcode.eiti.shitter.dtos.ViewPortRange;
 import pl.wawcode.eiti.shitter.dtos.ShitterOutDto;
@@ -13,7 +14,7 @@ import java.util.stream.Collectors;
 public class ShitterFacade {
     private final ShitterService shitterService;
 
-    public void addShitter(ShitterInDto shitter) {
+    public void addShitter(ShitterInDto shitter, MultipartFile file) {
         try {
             shitterService.addShitter(
                 Shitter
@@ -22,11 +23,11 @@ public class ShitterFacade {
                         .openingHour(shitter.getOpeningHour())
                         .closingHour(shitter.getClosingHour())
                         .description(shitter.getDescription())
-                        .image(shitter.getImage() != null ? shitter.getImage().getBytes() : null)
+                        .image(file != null ? file.getBytes() : null)
                     .build()
             );
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 

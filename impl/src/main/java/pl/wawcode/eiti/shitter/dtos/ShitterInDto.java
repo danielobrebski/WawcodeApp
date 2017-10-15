@@ -13,6 +13,6 @@ public class ShitterInDto {
     private Double longitude;
     private LocalDateTime openingHour;
     private LocalDateTime closingHour;
-    private MultipartFile image;
+    private String image;
     private String description;
 }

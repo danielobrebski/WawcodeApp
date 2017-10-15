@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import pl.wawcode.eiti.shitter.dtos.ViewPortRange;
 import pl.wawcode.eiti.shitter.domain.ShitterFacade;
 import pl.wawcode.eiti.shitter.dtos.ShitterInDto;
@@ -44,8 +45,8 @@ class ShitterController {
     }
 
     @PostMapping(path = "/shitter/add", consumes = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<Void> addShitter(@RequestBody ShitterInDto newShitter) {
-        shitterFacade.addShitter(newShitter);
+    ResponseEntity<Void> addShitter(@RequestBody ShitterInDto newShitter, @RequestParam("file") MultipartFile file) {
+        shitterFacade.addShitter(newShitter, file);
         return ResponseEntity.ok(null);
     }
 }
