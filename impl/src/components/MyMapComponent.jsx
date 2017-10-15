@@ -6,7 +6,6 @@ const MyMapComponent = withScriptjs(withGoogleMap(
   class extends React.Component {
 
 
-
     constructor(props) {
         super(props);
         this.trottledOnChangedBound = this.trottledOnChangedBound.bind(this);
