@@ -19,7 +19,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "/")
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://0.0.0.0:8080")
 class ShitterController {
     private final ShitterFacade shitterFacade;
 

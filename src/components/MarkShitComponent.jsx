@@ -9,7 +9,7 @@ class MarkShitComponent extends React.Component {
   onClick(like) {
     const href = like ? "accept": "reject";
 
-    fetch("http://localhost:58081/shitter/" + href, {
+    fetch("http://0.0.0.0:8080/shitter/" + href, {
       method: 'POST',
       headers : {
         'Content-Type' : 'application/json'

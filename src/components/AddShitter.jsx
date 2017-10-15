@@ -22,7 +22,7 @@ class AddShitter extends React.Component {
   }
 
   onSubmit() {
-    fetch("http://localhost:58081/shitter/add", {
+    fetch("http://0.0.0.0:8080/shitter/add", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

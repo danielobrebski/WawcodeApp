@@ -30,7 +30,7 @@ class App extends React.Component {
       }
     };
 
-    fetch("http://localhost:58081/shitter/getShittersFromLocation", {
+    fetch("http://0.0.0.0:8080/shitter/getShittersFromLocation", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
