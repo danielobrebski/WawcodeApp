@@ -1,5 +1,9 @@
 @import "./colors.scss";
 
+.circle {
+  border-radius: 25px;
+}
+
 .content {
   padding-top: 2rem;
 
@@ -9,6 +13,8 @@
 
     .headerInput {
       position: fixed;
+      color: white;
+      font-weight: bold;
       top: 1rem;
       left: 1rem;
     }
@@ -43,10 +49,21 @@
     display: inline-block;
     text-align: center;
 
+    .from, .to {
+      width: 9rem;
+      display: inline-block;
+
+      input {
+        margin-right: 0.5rem;
+        width: 5rem;
+      }
+    }
+
     &.addElemForm {
       color: black;
       font-weight: bold;
       width: calc(100% - 6rem);
+      margin-top: 0.5rem;
     }
 
     .buttonBack {
