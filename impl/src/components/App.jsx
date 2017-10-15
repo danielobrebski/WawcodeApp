@@ -2,6 +2,7 @@ import React from 'react';
 import MyMapComponent from './MyMapComponent';
 import MarkShitComponent from './MarkShitComponent';
 import Localization from './Localization';
+import MarkShitComponent from './MarkShitComponent';
 
 class App extends React.Component {
 

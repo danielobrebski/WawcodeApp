@@ -1,5 +1,6 @@
 package pl.wawcode.eiti.shitter;
 
+import io.vavr.control.Try;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -11,6 +12,7 @@ import pl.wawcode.eiti.shitter.dtos.ShitterInDto;
 import pl.wawcode.eiti.shitter.dtos.SubmissionShitterDto;
 import pl.wawcode.eiti.shitter.dtos.ShitterOutDto;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -26,15 +28,19 @@ class ShitterController {
     }
 
     @PostMapping(value = "/shitter/accept", consumes = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<Void> acceptShitter(@RequestBody SubmissionShitterDto dto) {
-        shitterFacade.acceptShitter(dto.getShitterId());
-        return ResponseEntity.ok(null);
+    ResponseEntity<Void> acceptShitter(@RequestBody SubmissionShitterDto dto,
+                                       HttpServletRequest request) {
+        return Try.of(() -> shitterFacade.acceptShitter(dto.getShitterId(), request.getRemoteAddr()))
+                .map(ResponseEntity::ok)
+                .getOrElse(ResponseEntity.status(HttpStatus.FORBIDDEN).body(null));
     }
 
     @PostMapping(value = "/shitter/reject", consumes = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<Void> rejectShitter(@RequestBody SubmissionShitterDto dto) {
-        shitterFacade.rejectShitter(dto.getShitterId());
-        return ResponseEntity.ok(null);
+    ResponseEntity<Void> rejectShitter(@RequestBody SubmissionShitterDto dto,
+                                       HttpServletRequest request) {
+        return Try.of(() -> shitterFacade.rejectShitter(dto.getShitterId(), request.getRemoteAddr()))
+                .map(ResponseEntity::ok)
+                .getOrElse(ResponseEntity.status(HttpStatus.FORBIDDEN).body(null));
     }
 
     @PostMapping(path = "/shitter/add", consumes = MediaType.APPLICATION_JSON_VALUE)
