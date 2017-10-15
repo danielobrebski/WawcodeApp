@@ -1,0 +1,8 @@
+{
+  "name": "Kooper app",
+  "description": "lorem ipsum",
+  "website": "https://blog.codecentric.de/en/2015/10/deploying-spring-boot-applications-to-heroku",
+  "repository": "https://github.com/danielobrebski/WawcodeApp",
+  "image": "heroku/java",
+  "addons": [ "heroku-postgresql" ]
+}
