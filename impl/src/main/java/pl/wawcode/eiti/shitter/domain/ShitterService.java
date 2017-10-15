@@ -2,6 +2,7 @@ package pl.wawcode.eiti.shitter.domain;
 
 import lombok.RequiredArgsConstructor;
 import pl.wawcode.eiti.shitter.dtos.ViewPortRange;
+import pl.wawcode.eiti.shitter.exceptions.AlreadyVotedException;
 
 import java.util.List;
 
@@ -24,17 +25,23 @@ class ShitterService {
         shitterRepository.save(shitter);
     }
 
-    void acceptShitter(Long id) {
+    void changeReputation(Long id, String remoteAddr, boolean positive) {
         Shitter shitter = shitterRepository.findOne(id);
-        long reputationCounter = shitter.getReputationCounter();
-        shitter.setReputationCounter(reputationCounter + 1);
+        validateVoter(remoteAddr, shitter);
+        changeReputation(shitter, positive);
+        shitter.getVoters().add(Voter.builder().remoteAddr(remoteAddr).build());
         shitterRepository.save(shitter);
     }
 
-    void rejectShitter(Long id) {
-        Shitter shitter = shitterRepository.findOne(id);
-        long reputationCounter = shitter.getReputationCounter();
-        shitter.setReputationCounter(reputationCounter - 1);
-        shitterRepository.save(shitter);
+    private void validateVoter(String remoteAddr, Shitter shitter) {
+        if(shitter.getVoters().contains(remoteAddr)) {
+            throw new AlreadyVotedException();
+        }
     }
+
+    private void changeReputation(Shitter shitter, boolean positive) {
+        long newRep = positive ? shitter.getReputationCounter() + 1 : shitter.getReputationCounter() - 1;
+        shitter.setReputationCounter(newRep);
+    }
+
 }

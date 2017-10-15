@@ -5,6 +5,8 @@ import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Data
@@ -28,4 +30,7 @@ class Shitter {
     private byte[] image;
 
     private String description;
+
+    @OneToMany
+    private Set<Voter> voters = new HashSet<>();
 }

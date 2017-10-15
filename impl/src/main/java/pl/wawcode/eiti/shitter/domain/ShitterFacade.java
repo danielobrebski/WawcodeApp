@@ -13,10 +13,6 @@ import java.util.stream.Collectors;
 public class ShitterFacade {
     private final ShitterService shitterService;
 
-    public void acceptShitter(Long id) {
-        shitterService.acceptShitter(id);
-    }
-
     public void addShitter(ShitterInDto shitter) {
         try {
             shitterService.addShitter(
@@ -34,8 +30,14 @@ public class ShitterFacade {
         }
     }
 
-    public void rejectShitter(Long id) {
-        shitterService.rejectShitter(id);
+    public Void acceptShitter(Long id, String remoteAddr) {
+        shitterService.changeReputation(id, remoteAddr, true);
+        return null;
+    }
+
+    public Void rejectShitter(Long id, String remoteAddr) {
+        shitterService.changeReputation(id, remoteAddr, false);
+        return null;
     }
 
     public List<ShitterOutDto> getShitters(ViewPortRange viewPortRange) {
