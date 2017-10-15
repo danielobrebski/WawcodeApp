@@ -24,8 +24,8 @@ class Shitter {
     @ColumnDefault("5")
     private long reputationCounter;
 
-    private LocalDateTime openingHour;
-    private LocalDateTime closingHour;
+    private String openingHour;
+    private String closingHour;
 
     private byte[] image;
 

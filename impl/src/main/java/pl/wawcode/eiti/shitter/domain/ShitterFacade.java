@@ -17,8 +17,7 @@ public class ShitterFacade {
     private final ShitterService shitterService;
 
     @Transactional(rollbackOn = RuntimeException.class)
-    public void addShitter(ShitterInDto shitter, MultipartFile file) {
-        try {
+    public void addShitter(ShitterInDto shitter) {
             shitterService.addShitter(
                 Shitter
                     .builder()
@@ -26,12 +25,8 @@ public class ShitterFacade {
                         .openingHour(shitter.getOpeningHour())
                         .closingHour(shitter.getClosingHour())
                         .description(shitter.getDescription())
-                        .image(file != null ? file.getBytes() : null)
                     .build()
             );
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     @Transactional(rollbackOn = RuntimeException.class)

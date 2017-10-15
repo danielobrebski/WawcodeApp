@@ -19,7 +19,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "/")
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://localhost:8081")
 class ShitterController {
     private final ShitterFacade shitterFacade;
 
@@ -45,8 +45,8 @@ class ShitterController {
     }
 
     @PostMapping(path = "/shitter/add", consumes = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<Void> addShitter(@RequestBody ShitterInDto newShitter, @RequestParam("file") MultipartFile file) {
-        shitterFacade.addShitter(newShitter, file);
+    ResponseEntity<Void> addShitter(@RequestBody ShitterInDto newShitter) {
+        shitterFacade.addShitter(newShitter);
         return ResponseEntity.ok(null);
     }
 }

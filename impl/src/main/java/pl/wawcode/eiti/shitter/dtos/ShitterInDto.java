@@ -11,8 +11,8 @@ import java.time.LocalDateTime;
 public class ShitterInDto {
     private Double latitude;
     private Double longitude;
-    private LocalDateTime openingHour;
-    private LocalDateTime closingHour;
+    private String openingHour;
+    private String closingHour;
     private String image;
     private String description;
 }
