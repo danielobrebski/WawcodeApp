@@ -20,7 +20,11 @@ public class ShitterFacade {
         shitterService.addShitter(
             Shitter
                 .builder()
-                .location(new ShitterLocation(shitter.getLatitude(), shitter.getLongitude()))
+                    .location(new ShitterLocation(shitter.getLatitude(), shitter.getLongitude()))
+                    .openingHour(shitter.getOpeningHour())
+                    .closingHour(shitter.getClosingHour())
+                    .description(shitter.getDescription())
+                    .image(shitter.getImage())
                 .build()
         );
     }
@@ -38,6 +42,10 @@ public class ShitterFacade {
                     .longitude(shitter.getLocation().getLongitude())
                     .latitude(shitter.getLocation().getLatitude())
                     .reputationCounter(shitter.getReputationCounter())
+                    .openingHour(shitter.getOpeningHour())
+                    .closingHour(shitter.getClosingHour())
+                    .description(shitter.getDescription())
+                    .image(shitter.getImage())
                     .build()
             )
             .collect(Collectors.toList());
