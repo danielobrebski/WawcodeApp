@@ -64,12 +64,12 @@ stage.dependsOn(copyToLib)
 import com.moowork.gradle.node.task.NodeTask
 
 task webpack(type: NodeTask, dependsOn: 'npmInstall') {
-    script = project.file('impl/node_modules/.bin/webpack')
+    script = project.file('node_modules/.bin/webpack')
 }
 
 processResources.dependsOn 'webpack'
 
-clean.delete << file('impl/src/main/webapp')
+clean.delete << file('src/main/webapp')
 
 dependencies {
 	compile 'com.github.jsimone:webapp-runner:8.5.11.3'

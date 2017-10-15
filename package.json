@@ -1,8 +1,66 @@
 {
-  "name": "Kooper app",
-  "description": "lorem ipsum",
-  "website": "https://blog.codecentric.de/en/2015/10/deploying-spring-boot-applications-to-heroku",
-  "repository": "https://github.com/danielobrebski/WawcodeApp",
-  "image": "heroku/java",
-  "addons": [ "heroku-postgresql" ]
+  "name": "frontend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "webpack-dev-server --progress --config config/webpack.config.js",
+    "build": "rimraf ../backend/src/main/resources/static && cross-env NODE_ENV=production webpack -p --progress --config config/webpack.config.js",
+    "test": "jest"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "axios": "0.16.1",
+    "query-string": "4.3.4",
+    "react": "15.4.2",
+    "react-dom": "15.4.2",
+    "react-google-maps": "^8.5.0",
+    "react-redux": "5.0.4",
+    "react-router-dom": "4.1.1",
+    "redux": "3.6.0",
+    "redux-form": "6.7.0"
+  },
+  "devDependencies": {
+    "babel-core": "6.24.0",
+    "babel-jest": "19.0.0",
+    "babel-loader": "6.4.0",
+    "babel-preset-es2015": "6.24.0",
+    "babel-preset-react": "6.23.0",
+    "cross-env": "3.2.3",
+    "css-loader": "0.27.2",
+    "extract-text-webpack-plugin": "2.1.0",
+    "file-loader": "0.10.1",
+    "html-webpack-plugin": "2.28.0",
+    "jest": "19.0.2",
+    "node-sass": "4.5.0",
+    "react-test-renderer": "15.4.2",
+    "rimraf": "2.6.1",
+    "sass-loader": "6.0.3",
+    "style-loader": "0.13.2",
+    "webpack": "2.2.1",
+    "webpack-dev-server": "2.4.1"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "jsx"
+    ],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/config/jest/file.mock.js",
+      "\\.(css|less|scss)$": "<rootDir>/config/jest/style.mock.js"
+    },
+    "collectCoverage": true
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "react"
+    ],
+    "env": {
+      "test": {
+        "plugins": [
+          "transform-es2015-modules-commonjs"
+        ]
+      }
+    }
+  }
 }
