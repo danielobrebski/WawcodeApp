@@ -28,16 +28,31 @@ class DataLoader implements ApplicationRunner {
         List<Shitter> shitterList = new ArrayList<>(0);
 
         ShitterLocation shitterLocation = new ShitterLocation(52.255191, 21.037646);
-        Shitter shitter = Shitter.builder().reputationCounter(-4).location(shitterLocation).build();
+        Shitter shitter = Shitter.builder()
+                .reputationCounter(-4)
+                .description("NIEPOLECAM")
+                .location(shitterLocation)
+                .build();
         shitterList.add(shitter);
         shitterLocation = new ShitterLocation(52.256465, 21.045628);
-        shitter = Shitter.builder().reputationCounter(1).location(shitterLocation).build();
+        shitter = Shitter.builder()
+                .location(shitterLocation)
+                .description("SUPER KLOP")
+                .build();
         shitterList.add(shitter);
         shitterLocation = new ShitterLocation(52.246465, 21.025528);
-        shitter = Shitter.builder().reputationCounter(4).location(shitterLocation).build();
+        shitter = Shitter.builder()
+                .reputationCounter(4)
+                .description("SUPER PARTIA")
+                .location(shitterLocation)
+                .build();
         shitterList.add(shitter);
         shitterLocation = new ShitterLocation(52.252215, 21.035628);
-        shitter = Shitter.builder().reputationCounter(4).location(shitterLocation).build();
+        shitter = Shitter.builder()
+                .reputationCounter(4)
+                .description("POLECAM")
+                .location(shitterLocation)
+                .build();
         shitterList.add(shitter);
 
         return shitterList;
